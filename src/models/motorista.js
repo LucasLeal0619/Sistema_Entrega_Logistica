@@ -1,26 +1,30 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Motorista extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // Motorista tem muitas Rotas (histórico)
-  Motorista.hasMany(models.Rota, {
-    foreignKey: 'motorista_id',
-    as: 'rotas'
-  });
+      // 1:N Motorista -> Rota
+      [cite_start]// "Um motorista pode ter várias rotas" [cite: 396]
+      Motorista.hasMany(models.Rota, {
+        foreignKey: 'motorista_id',
+        as: 'rotas'
+      });
 
-  // Motorista pode estar vinculado a um Veículo atual (1:1)
-  Motorista.hasOne(models.Veiculo, {
-    foreignKey: 'motorista_ativo_id',
-    as: 'veiculoAtual'
-  });
+      // 1:N Motorista -> Entrega
+      [cite_start]// "Um motorista realiza várias entregas" [cite: 393]
+      Motorista.hasMany(models.Entrega, {
+        foreignKey: 'motorista_id',
+        as: 'entregas'
+      });
+
+      // 1:1 Motorista -> Veículo
+      // A chave estrangeira 'motorista_ativo_id' está na tabela Veiculos.
+      // Logo, Motorista "tem um" Veículo associado onde ele é o motorista ativo.
+      Motorista.hasOne(models.Veiculo, {
+        foreignKey: 'motorista_ativo_id',
+        as: 'veiculo_em_uso'
+      });
     }
   }
   Motorista.init({
@@ -35,10 +39,12 @@ module.exports = (sequelize, DataTypes) => {
   type: DataTypes.ENUM('ativo', 'inativo', 'em_rota', 'disponivel'),
   defaultValue: 'disponivel'
 },
-    veiculo_ativo_id: DataTypes.INTEGER
+    // Campo mantido para compatibilidade com sua migration, mas o vínculo real é feito via tabela Veiculos
+    veiculo_ativo_id: DataTypes.INTEGER 
   }, {
     sequelize,
     modelName: 'Motorista',
+    tableName: 'Motoristas'
   });
   return Motorista;
 };
