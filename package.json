@@ -18,5 +18,14 @@
   },
   "devDependencies": {
     "sequelize-cli": "^6.6.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasLeal0619/Sistema_Entrega_Logistica.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/LucasLeal0619/Sistema_Entrega_Logistica/issues"
+  },
+  "homepage": "https://github.com/LucasLeal0619/Sistema_Entrega_Logistica#readme"
 }
