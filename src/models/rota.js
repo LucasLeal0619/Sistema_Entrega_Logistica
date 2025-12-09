@@ -1,32 +1,29 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Rota extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // Rota tem muitas Entregas
-  Rota.hasMany(models.Entrega, {
-    foreignKey: 'rota_id',
-    as: 'entregas'
-  });
-  
-  // Rota pertence a um Motorista
-  Rota.belongsTo(models.Motorista, {
-    foreignKey: 'motorista_id',
-    as: 'motorista'
-  });
+      // N:1 Rota -> Motorista
+      [cite_start]// "Cada rota pertence a um único motorista" [cite: 397]
+      Rota.belongsTo(models.Motorista, {
+        foreignKey: 'motorista_id',
+        as: 'motorista'
+      });
 
-  // Rota usa um Veículo
-  Rota.belongsTo(models.Veiculo, {
-    foreignKey: 'veiculo_id',
-    as: 'veiculo'
-  });
+      // N:1 Rota -> Veículo
+      [cite_start]// "Cada rota utiliza um único veículo" [cite: 400]
+      Rota.belongsTo(models.Veiculo, {
+        foreignKey: 'veiculo_id',
+        as: 'veiculo'
+      });
+
+      // 1:N Rota -> Entrega
+      [cite_start]// "Uma rota contém várias entregas" [cite: 403]
+      Rota.hasMany(models.Entrega, {
+        foreignKey: 'rota_id',
+        as: 'entregas'
+      });
     }
   }
   Rota.init({
@@ -41,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Rota',
+    tableName: 'Rotas'
   });
   return Rota;
 };

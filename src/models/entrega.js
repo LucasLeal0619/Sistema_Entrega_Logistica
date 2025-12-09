@@ -1,22 +1,29 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Entrega extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // Entrega pertence a uma Rota
-  Entrega.belongsTo(models.Rota, {
-    foreignKey: 'rota_id',
-    as: 'rota'
-  });
-  // Entrega pertence a um Cliente
-  // Entrega.belongsTo(models.Cliente, { foreignKey: 'cliente_id', as: 'cliente' });
+      // N:1 Entrega -> Rota
+      [cite_start]// "Cada entrega pertence a no máximo uma rota" [cite: 404]
+      Entrega.belongsTo(models.Rota, {
+        foreignKey: 'rota_id',
+        as: 'rota'
+      });
+
+      // N:1 Entrega -> Motorista
+      [cite_start]// "Uma entrega pode ter um motorista atribuído" [cite: 394]
+      Entrega.belongsTo(models.Motorista, {
+        foreignKey: 'motorista_id',
+        as: 'motorista'
+      });
+
+      // N:1 Entrega -> Cliente
+      [cite_start]// "Cada entrega possui apenas um cliente" [cite: 410]
+      Entrega.belongsTo(models.Cliente, {
+        foreignKey: 'cliente_id',
+        as: 'cliente'
+      });
     }
   }
   Entrega.init({
@@ -30,10 +37,12 @@ module.exports = (sequelize, DataTypes) => {
     data_entrega_real: DataTypes.DATE,
     observacoes: DataTypes.TEXT,
     rota_id: DataTypes.INTEGER,
+    motorista_id: DataTypes.INTEGER,
     cliente_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Entrega',
+    tableName: 'Entregas'
   });
   return Entrega;
 };

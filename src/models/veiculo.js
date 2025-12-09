@@ -1,26 +1,22 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Veiculo extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // Veículo tem muitas Rotas (histórico de uso)
-  Veiculo.hasMany(models.Rota, {
-    foreignKey: 'veiculo_id',
-    as: 'rotas'
-  });
+      // 1:N Veículo -> Rota
+      [cite_start]// "Um veículo pode ser utilizado em várias rotas" [cite: 399]
+      Veiculo.hasMany(models.Rota, {
+        foreignKey: 'veiculo_id',
+        as: 'rotas'
+      });
 
-  // Veículo pode ter um Motorista Ativo no momento
-  Veiculo.belongsTo(models.Motorista, {
-    foreignKey: 'motorista_ativo_id',
-    as: 'motoristaAtual'
-  });
+      // 1:1 Veículo -> Motorista (Ativo)
+      [cite_start]// "Um motorista ativo está vinculado a um único veículo ativo por vez" [cite: 348]
+      Veiculo.belongsTo(models.Motorista, {
+        foreignKey: 'motorista_ativo_id',
+        as: 'motorista_responsavel'
+      });
     }
   }
   Veiculo.init({
@@ -34,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Veiculo',
+    tableName: 'Veiculos'
   });
   return Veiculo;
 };
