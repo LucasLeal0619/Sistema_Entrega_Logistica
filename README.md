@@ -51,26 +51,49 @@ Liste todos os pacotes Python necessários, com versões recomendadas. Utilize u
 Apresente a organização dos diretórios e arquivos principais. Utilize uma árvore de diretórios para visualização clara.
 
 ```
-projeto_api/
-├── manage.py
-├── requirements.txt
-├── .env.example
-├── projeto/
-│   ├── __init__.py
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-├── apps/
-│   ├── core/
-│   │   ├── models.py
-│   │   ├── views.py
-│   │   ├── serializers.py
-│   │   └── urls.py
-│   └── ...
-├── docs/
-│   └── database_diagram.png
-└── scripts/
-    └── deploy.sh
+sistema_entrega_logistica/
+├── src/
+│   ├── config/
+│   │   ├── config.json
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── clientController.js
+│   │   ├── deliveryController.js
+│   │   ├── driverController.js
+│   │   └── routeController.js
+│   ├── middlewares/
+│   │   ├── authMiddleware.js
+│   │   ├── errorHandler.js
+│   │   └── validator.js
+│   ├── models/
+│   │   ├── entrega.js
+│   │   ├── index.js
+│   │   ├── motorista.js
+│   │   ├── rota.js
+│   │   └── veiculo.js
+│   ├── routes/
+│   │   ├── index.js
+│   │   ├── authRoutes.js
+│   │   ├── clientRoutes.js
+│   │   ├── deliveryRoutes.js
+│   │   ├── driverRoutes.js
+│   │   └── routesRoutes.js
+│   ├── services/
+│   │   ├── authService.js
+│   │   ├── routeOptimizationService.js
+│   │   └── trackingService.js
+│   ├── utils/
+│   │   ├── helpers.js
+│   │   └── logger.js
+│   └── app.js 
+├── node_modules/
+├── migrations/
+│   ├── routes/
+├── index.js
+├── package.json
+├── package-lock.json
+├── LICENSE
+└── README.md
 ```
 
 Descreva brevemente o propósito de cada diretório e módulo relevante.
@@ -152,5 +175,6 @@ Siga os passos abaixo para configurar o ambiente local.
    ```
 
 > **CI/CD:** Integração com GitHub Actions disponível em `.github/workflows/deploy.yml`.
+
 
 
