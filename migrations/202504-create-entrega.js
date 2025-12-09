@@ -46,16 +46,25 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },
+      motorista_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true, // Permite que a entrega seja criada sem motorista inicialmente
+        references: {
+          model: 'Motoristas', // Nome da tabela de referência
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL' // Se o motorista for excluído, a entrega perde o vínculo mas não é apagada
+      },
       cliente_id: { 
         type: Sequelize.INTEGER,
         allowNull: true,
-        // COMENTEI A REFERÊNCIA ABAIXO POIS A TABELA CLIENTES AINDA NÃO EXISTE
-        // references: {
-        //   model: 'Clientes',
-        //   key: 'id'
-        // },
-        // onUpdate: 'CASCADE',
-        // onDelete: 'SET NULL'
+        references: {
+        model: 'Clientes',
+        key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
       },
       createdAt: {
         allowNull: false,
