@@ -5,21 +5,21 @@ module.exports = (sequelize, DataTypes) => {
   class Entrega extends Model {
     static associate(models) {
       // N:1 Entrega -> Rota
-      [cite_start]// "Cada entrega pertence a no máximo uma rota" [cite: 404]
+      // "Cada entrega pertence a no máximo uma rota"
       Entrega.belongsTo(models.Rota, {
         foreignKey: 'rota_id',
         as: 'rota'
       });
 
       // N:1 Entrega -> Motorista
-      [cite_start]// "Uma entrega pode ter um motorista atribuído" [cite: 394]
+      // "Uma entrega pode ter um motorista atribuído"
       Entrega.belongsTo(models.Motorista, {
         foreignKey: 'motorista_id',
         as: 'motorista'
       });
 
       // N:1 Entrega -> Cliente
-      [cite_start]// "Cada entrega possui apenas um cliente" [cite: 410]
+      // "Cada entrega possui apenas um cliente"
       Entrega.belongsTo(models.Cliente, {
         foreignKey: 'cliente_id',
         as: 'cliente'

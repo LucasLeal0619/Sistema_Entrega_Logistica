@@ -5,14 +5,14 @@ module.exports = (sequelize, DataTypes) => {
   class Veiculo extends Model {
     static associate(models) {
       // 1:N Veículo -> Rota
-      [cite_start]// "Um veículo pode ser utilizado em várias rotas" [cite: 399]
+      // "Um veículo pode ser utilizado em várias rotas"
       Veiculo.hasMany(models.Rota, {
         foreignKey: 'veiculo_id',
         as: 'rotas'
       });
 
       // 1:1 Veículo -> Motorista (Ativo)
-      [cite_start]// "Um motorista ativo está vinculado a um único veículo ativo por vez" [cite: 348]
+      // "Um motorista ativo está vinculado a um único veículo ativo por vez"
       Veiculo.belongsTo(models.Motorista, {
         foreignKey: 'motorista_ativo_id',
         as: 'motorista_responsavel'

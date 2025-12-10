@@ -5,14 +5,14 @@ module.exports = (sequelize, DataTypes) => {
   class Motorista extends Model {
     static associate(models) {
       // 1:N Motorista -> Rota
-      [cite_start]// "Um motorista pode ter várias rotas" [cite: 396]
+      // "Um motorista pode ter várias rotas"
       Motorista.hasMany(models.Rota, {
         foreignKey: 'motorista_id',
         as: 'rotas'
       });
 
       // 1:N Motorista -> Entrega
-      [cite_start]// "Um motorista realiza várias entregas" [cite: 393]
+      // "Um motorista realiza várias entregas"
       Motorista.hasMany(models.Entrega, {
         foreignKey: 'motorista_id',
         as: 'entregas'
