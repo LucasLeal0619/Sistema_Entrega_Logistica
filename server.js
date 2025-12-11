@@ -17,9 +17,10 @@ app.get('/', (req, res) => {
 // -- IMPORTAÇÕES DAS ROTAS FUTURAS --
 // 1. Importar o arquivo de rotas
 const motoristaRoutes = require('./src/routes/motoristaRoutes');
+const veiculoRoutes = require('./src/routes/veiculoRoutes');
 // 2. Usar a rota
 app.use('/motoristas', motoristaRoutes);
-
+app.use('/veiculos', veiculoRoutes); 
 // Iniciar o Servidor
 app.listen(PORT, async () => {
   console.log(`🚀 Servidor rodando na porta ${PORT}`);
