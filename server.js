@@ -11,12 +11,14 @@ app.use(express.json()); // Permite que a API entenda JSON
 
 // Rota de Teste (Ping)
 app.get('/', (req, res) => {
-  res.json({ message: 'Sistema de Logística API rodando com sucesso!' });
+  res.json({ mensagem: 'Sistema de Logística API rodando com sucesso!' });
 });
 
-// -- AQUI ENTRARÃO AS IMPORTAÇÕES DAS ROTAS FUTURAS --
-// const motoristaRoutes = require('./routes/motoristaRoutes');
-// app.use('/motoristas', motoristaRoutes);
+// -- IMPORTAÇÕES DAS ROTAS FUTURAS --
+// 1. Importar o arquivo de rotas
+const motoristaRoutes = require('./src/routes/motoristaRoutes');
+// 2. Usar a rota
+app.use('/motoristas', motoristaRoutes);
 
 // Iniciar o Servidor
 app.listen(PORT, async () => {

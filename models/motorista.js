@@ -38,9 +38,7 @@ module.exports = (sequelize, DataTypes) => {
     status: {
   type: DataTypes.ENUM('ativo', 'inativo', 'em_rota', 'disponivel'),
   defaultValue: 'disponivel'
-},
-    // Campo mantido para compatibilidade com sua migration, mas o vínculo real é feito via tabela Veiculos
-    veiculo_ativo_id: DataTypes.INTEGER 
+}
   }, {
     sequelize,
     modelName: 'Motorista',
