@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { sequelize } = require('./models'); // Importa a conexão do Sequelize
+require('dotenv').config();
 
 const app = express();
 const PORT = 3000;
@@ -25,9 +26,9 @@ app.use('/motoristas', motoristaRoutes);
 app.use('/veiculos', veiculoRoutes); 
 app.use('/entregas', entregaRoutes);
 app.use('/rotas', rotaRoutes);
+app.use('/auth', authRoutes);   // login
 // -- FIM DAS IMPORTAÇÕES DAS ROTAS --
 
-console.log('JWT:', process.env.JWT_SECRET);
 
 // Iniciar o Servidor
 app.listen(PORT, async () => {

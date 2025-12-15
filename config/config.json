@@ -5,7 +5,7 @@
     "database": "gLogistica",
     "host": "localhost",
     "dialect": "postgres"
-  },
+  }, 
   "test": {
     "username": "root",
     "password": null,
