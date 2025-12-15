@@ -2,12 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 // Importação das rotas
-const clienteRoutes = require('./clienteRoutes');
-const motoristaRoutes = require('./motoristaRoutes');
-const veiculoRoutes = require('./veiculoRoutes');
-const entregaRoutes = require('./entregaRoutes');
-const rotaRoutes = require('./rotaRoutes');
-
+const motoristaRoutes = require('./src/routes/motoristaRoutes');
+const veiculoRoutes = require('./src/routes/veiculoRoutes');
+const entregaRoutes = require('./src/routes/entregaRoutes');
+const rotaRoutes = require('./src/routes/rotaRoutes');
+const authRoutes = require('./src/routes/autenticacao.routes')
 // Rota raiz da API
 router.get('/', (req, res) => {
   res.json({
@@ -22,5 +21,5 @@ router.use('/motoristas', motoristaRoutes);
 router.use('/veiculos', veiculoRoutes);
 router.use('/entregas', entregaRoutes);
 router.use('/rotas', rotaRoutes);
-
+router.use('/auth', authRoutes);
 module.exports = router;
