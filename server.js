@@ -21,6 +21,7 @@ const motoristaRoutes = require('./src/routes/motoristaRoutes');
 const veiculoRoutes = require('./src/routes/veiculoRoutes');
 const entregaRoutes = require('./src/routes/entregaRoutes');
 const rotaRoutes = require('./src/routes/rotaRoutes');
+const authRoutes = require('./src/routes/autenticacao.routes')
 // 2. Usar a rota
 app.use('/motoristas', motoristaRoutes);
 app.use('/veiculos', veiculoRoutes); 
