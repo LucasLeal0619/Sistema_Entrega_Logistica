@@ -1,25 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const { body } = require('express-validator');
-const { authMiddleware } = require('../middlewares/authMiddleware');
-const clientController = require('../controllers/clientController');
-const validator = require('../middlewares/validator');
+const ClienteController = require('../controllers/clienteController');
 
-// validacoes
-const createClientValidation = [
-  body('name').notEmpty().withMessage('Nome é obrigatório'),
-  body('email').isEmail().withMessage('Email inválido'),
-  body('phone').notEmpty().withMessage('Telefone é obrigatório'),
-  body('type').isIn(['ecommerce', 'pharmacy', 'restaurant']).withMessage('Tipo inválido'),
-  body('address').notEmpty().withMessage('Endereço é obrigatório')
-];
+// POST http://localhost:3000/clientes -> Criar cliente
+router.post('/', ClienteController.store);
 
-router.use(authMiddleware);
+// GET http://localhost:3000/clientes -> Listar clientes
+router.get('/', ClienteController.index);
 
-router.post('/', createClientValidation, validator, clientController.create);
-router.get('/', clientController.list);
-router.get('/:id', clientController.getById);
-router.get('/:id/deliveries', clientController.getDeliveries);
-router.post('/:id/regenerate-key', clientController.regenerateApiKey);
+// GET http://localhost:3000/clientes/:id -> Buscar cliente por ID
+router.get('/:id', ClienteController.show);
+
+// PUT http://localhost:3000/clientes/:id -> Atualizar cliente
+router.put('/:id', ClienteController.update);
+
+// DELETE http://localhost:3000/clientes/:id -> Remover cliente
+router.delete('/:id', ClienteController.delete);
 
 module.exports = router;
+

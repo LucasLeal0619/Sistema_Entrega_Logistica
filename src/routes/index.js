@@ -1,30 +1,26 @@
 const express = require('express');
 const router = express.Router();
 
-const authRoutes = require('./authRoutes');
-const driverRoutes = require('./driverRoutes');
-const clientRoutes = require('./clientRoutes');
-const deliveryRoutes = require('./deliveryRoutes');
-const routeRoutes = require('./routeRoutes');
+// Importação das rotas
+const clienteRoutes = require('./clienteRoutes');
+const motoristaRoutes = require('./motoristaRoutes');
+const veiculoRoutes = require('./veiculoRoutes');
+const entregaRoutes = require('./entregaRoutes');
+const rotaRoutes = require('./rotaRoutes');
 
+// Rota raiz da API
 router.get('/', (req, res) => {
   res.json({
-    message: 'API de Gestão de Logística',
-    version: '1.0.0',
-    endpoints: {
-      auth: '/api/auth',
-      drivers: '/api/drivers',
-      clients: '/api/clients',
-      deliveries: '/api/deliveries',
-      routes: '/api/routes'
-    }
+    message: 'API do Sistema de Entrega Logística',
+    version: '1.0.0'
   });
 });
 
-router.use('/auth', authRoutes);
-router.use('/drivers', driverRoutes);
-router.use('/clients', clientRoutes);
-router.use('/deliveries', deliveryRoutes);
-router.use('/routes', routeRoutes);
+// Registro das rotas
+router.use('/clientes', clienteRoutes);
+router.use('/motoristas', motoristaRoutes);
+router.use('/veiculos', veiculoRoutes);
+router.use('/entregas', entregaRoutes);
+router.use('/rotas', rotaRoutes);
 
 module.exports = router;
