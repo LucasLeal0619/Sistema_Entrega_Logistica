@@ -27,6 +27,7 @@ app.use('/entregas', entregaRoutes);
 app.use('/rotas', rotaRoutes);
 // -- FIM DAS IMPORTAÇÕES DAS ROTAS --
 
+console.log('JWT:', process.env.JWT_SECRET);
 
 // Iniciar o Servidor
 app.listen(PORT, async () => {
