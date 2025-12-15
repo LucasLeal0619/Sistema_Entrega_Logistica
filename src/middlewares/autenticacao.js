@@ -10,10 +10,16 @@ module.exports = (req, res, next) => {
   const [, token] = authHeader.split(' ');
 
   try {
-    const dados = jwt.verify(token, process.env.JWT_SECRET);
-    req.usuarioId = dados.id;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    // agora salvamos mais informações do usuário
+    req.usuario = {
+      id: decoded.id,
+      role: decoded.role
+    };
+
     return next();
-  } catch {
+  } catch (err) {
     return res.status(401).json({ erro: 'Token inválido' });
   }
 };
