@@ -1,18 +1,19 @@
 const express = require('express');
 const cors = require('cors');
-const { sequelize } = require('./models'); // Importa a conexão do Sequelize
-require('dotenv').config();
+const { sequelize } = require('./models');
 
 const app = express();
 const PORT = 3000;
 
-// Configurações Básicas
-app.use(cors()); // Permite conexões externas
-app.use(express.json()); // Permite que a API entenda JSON
+app.use(cors());
+app.use(express.json());
 
-// Rota de Teste (Ping)
+// Rota base
 app.get('/', (req, res) => {
-  res.json({ mensagem: 'Sistema de Logística API rodando com sucesso!' });
+  res.json({
+    message: 'Sistema de Logística API',
+    status: 'online'
+  });
 });
 
 // -- IMPORTAÇÕES DAS ROTAS FUTURAS --
@@ -30,16 +31,13 @@ app.use('/rotas', rotaRoutes);
 app.use('/auth', authRoutes);   // login
 // -- FIM DAS IMPORTAÇÕES DAS ROTAS --
 
-
-// Iniciar o Servidor
+// Inicia servidor
 app.listen(PORT, async () => {
   console.log(`🚀 Servidor rodando na porta ${PORT}`);
-  
   try {
-    // Testa a conexão com o banco
     await sequelize.authenticate();
-    console.log('✅ Conexão com PostgreSQL estabelecida com sucesso!');
+    console.log('✅ Banco conectado');
   } catch (error) {
-    console.error('❌ Não foi possível conectar ao banco de dados:', error);
+    console.error('❌ Erro ao conectar no banco:', error);
   }
 });
