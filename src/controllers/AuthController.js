@@ -37,6 +37,7 @@ module.exports = {
       });
 
     } catch (error) {
+        console.error(error);
       return res.status(500).json({ erro: 'Erro ao realizar login' });
     }
   },
