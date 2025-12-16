@@ -24,15 +24,25 @@ const motoristaRoutes = require('./src/routes/motoristaRoutes');
 const veiculoRoutes = require('./src/routes/veiculoRoutes');
 const entregaRoutes = require('./src/routes/entregaRoutes');
 const rotaRoutes = require('./src/routes/rotaRoutes');
-const authRoutes = require('./src/routes/autenticacao.routes')
-const clienteRoutes = require('./src/routes/clienteRoutes')
+const authRoutes = require('./src/routes/autenticacao.routes');
+const clienteRoutes = require('./src/routes/clienteRoutes');
+const motoristaEntregaRoutes = require('./src/routes/relacionamentosRotas/motoristaEntrega.routes');
+const motoristaRotaRoutes = require('./src/routes/relacionamentosRotas/motoristaRota.routes');
+const veiculoRotaRoutes = require('./src/routes/relacionamentosRotas/veiculoRota.routes');
+const motoristaVeiculoRoutes = require('./src/routes/relacionamentosRotas/motoristaVeiculo.routes');
+const rotaEntregaRoutes = require('./src/routes/relacionamentosRotas/rotaEntrega.routes');
 // 2. Usar a rota
 app.use('/motoristas', motoristaRoutes);
 app.use('/veiculos', veiculoRoutes); 
 app.use('/entregas', entregaRoutes);
 app.use('/rotas', rotaRoutes);
 app.use('/auth', authRoutes);   // login
-app.use('/cliente,', clienteRoutes)
+app.use('/cliente,', clienteRoutes);
+app.use('/api', motoristaEntregaRoutes);
+app.use('/api', motoristaRotaRoutes);
+app.use('/api', veiculoRotaRoutes);
+app.use('/api', motoristaVeiculoRoutes);
+app.use('/api', rotaEntregaRoutes);
 // -- FIM DAS IMPORTAÇÕES DAS ROTAS --
 
 // Inicia servidor
