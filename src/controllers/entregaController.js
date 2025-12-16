@@ -1,128 +1,149 @@
-const { Entrega } = require('../../models');
+const { Entrega, Motorista } = require('../../models');
 
 module.exports = {
-  // Criar entrega
+
+  // CRIAR ENTREGA (APENAS ADMIN)
   async store(req, res) {
     try {
-      const {
-        codigo_rastreio,
-        endereco_origem,
-        endereco_destino,
-        status,
-        capacidade_necessaria,
-        valor_frete,
-        data_entrega_prevista,
-        data_entrega_real,
-        observacoes,
-        rota_id,
-        motorista_id,
-        cliente_id
-      } = req.body;
+      if (req.usuario.role !== 'ADMIN') {
+        return res.status(403).json({ erro: 'Apenas administradores podem criar entregas' });
+      }
 
-      const entrega = await Entrega.create({
-        codigo_rastreio,
-        endereco_origem,
-        endereco_destino,
-        status,
-        capacidade_necessaria,
-        valor_frete,
-        data_entrega_prevista,
-        data_entrega_real,
-        observacoes,
-        rota_id,
-        motorista_id,
-        cliente_id
-      });
-
+      const entrega = await Entrega.create(req.body);
       return res.status(201).json(entrega);
+
     } catch (error) {
       return res.status(400).json({ error: 'Erro ao criar entrega' });
     }
   },
 
-  // Listar entregas
+  //  LISTAR ENTREGAS
   async index(req, res) {
     try {
-      const entregas = await Entrega.findAll();
-      return res.status(200).json(entregas);
+
+      // ADMIN vê tudo
+      if (req.usuario.role === 'ADMIN') {
+        const entregas = await Entrega.findAll();
+        return res.json(entregas);
+      }
+
+      // MOTORISTA vê apenas as próprias
+      if (req.usuario.role === 'MOTORISTA') {
+        const motorista = await Motorista.findOne({
+          where: { usuario_id: req.usuario.id }
+        });
+
+        if (!motorista) {
+          return res.status(404).json({ error: 'Motorista não encontrado' });
+        }
+
+        const entregas = await Entrega.findAll({
+          where: { motorista_id: motorista.id }
+        });
+
+        return res.json(entregas);
+      }
+
+      return res.status(403).json({ error: 'Acesso negado' });
+
     } catch (error) {
       return res.status(500).json({ error: 'Erro ao listar entregas' });
     }
   },
 
-  // Buscar entrega por ID
+  //  BUSCAR ENTREGA POR ID
   async show(req, res) {
     try {
       const { id } = req.params;
-
       const entrega = await Entrega.findByPk(id);
+
       if (!entrega) {
         return res.status(404).json({ error: 'Entrega não encontrada' });
       }
 
-      return res.json(entrega);
+      // ADMIN pode ver qualquer entrega
+      if (req.usuario.role === 'ADMIN') {
+        return res.json(entrega);
+      }
+
+      // MOTORISTA só pode ver se for dele
+      if (req.usuario.role === 'MOTORISTA') {
+        const motorista = await Motorista.findOne({
+          where: { usuario_id: req.usuario.id }
+        });
+
+        if (entrega.motorista_id !== motorista.id) {
+          return res.status(403).json({ error: 'Acesso negado' });
+        }
+
+        return res.json(entrega);
+      }
+
+      return res.status(403).json({ error: 'Acesso negado' });
+
     } catch (error) {
       return res.status(500).json({ error: 'Erro ao buscar entrega' });
     }
   },
 
-  // Atualizar entrega
+  //  ATUALIZAR ENTREGA
   async update(req, res) {
     try {
       const { id } = req.params;
-      const {
-        codigo_rastreio,
-        endereco_origem,
-        endereco_destino,
-        status,
-        capacidade_necessaria,
-        valor_frete,
-        data_entrega_prevista,
-        data_entrega_real,
-        observacoes,
-        rota_id,
-        motorista_id,
-        cliente_id
-      } = req.body;
-
       const entrega = await Entrega.findByPk(id);
+
       if (!entrega) {
         return res.status(404).json({ error: 'Entrega não encontrada' });
       }
 
-      await entrega.update({
-        codigo_rastreio,
-        endereco_origem,
-        endereco_destino,
-        status,
-        capacidade_necessaria,
-        valor_frete,
-        data_entrega_prevista,
-        data_entrega_real,
-        observacoes,
-        rota_id,
-        motorista_id,
-        cliente_id
-      });
+      // ADMIN pode atualizar tudo
+      if (req.usuario.role === 'ADMIN') {
+        await entrega.update(req.body);
+        return res.json(entrega);
+      }
 
-      return res.json(entrega);
+      // MOTORISTA só pode atualizar status da própria entrega
+      if (req.usuario.role === 'MOTORISTA') {
+        const motorista = await Motorista.findOne({
+          where: { usuario_id: req.usuario.id }
+        });
+
+        if (entrega.motorista_id !== motorista.id) {
+          return res.status(403).json({ error: 'Acesso negado' });
+        }
+
+        await entrega.update({
+          status: req.body.status,
+          data_entrega_real: req.body.data_entrega_real
+        });
+
+        return res.json(entrega);
+      }
+
+      return res.status(403).json({ error: 'Acesso negado' });
+
     } catch (error) {
       return res.status(400).json({ error: 'Erro ao atualizar entrega' });
     }
   },
 
-  // Remover entrega
+  // DELETAR ENTREGA (APENAS ADMIN)
   async delete(req, res) {
     try {
-      const { id } = req.params;
+      if (req.usuario.role !== 'ADMIN') {
+        return res.status(403).json({ error: 'Apenas administradores podem remover entregas' });
+      }
 
+      const { id } = req.params;
       const entrega = await Entrega.findByPk(id);
+
       if (!entrega) {
         return res.status(404).json({ error: 'Entrega não encontrada' });
       }
 
       await entrega.destroy();
       return res.json({ message: 'Entrega removida com sucesso' });
+
     } catch (error) {
       return res.status(500).json({ error: 'Erro ao remover entrega' });
     }

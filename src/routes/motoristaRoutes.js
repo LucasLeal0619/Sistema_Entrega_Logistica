@@ -11,7 +11,7 @@ router.post('/', autenticacao, autorizar(['ADMIN']), MotoristaController.store);
 router.get('/', autenticacao, MotoristaController.index); // só pode acessar com token
 
 // GET http://localhost:3000/motoristas/:id -> Buscar motorista por ID
-router.get('/:id', MotoristaController.show);
+router.get('/:id', autenticacao, autorizar(['ADMIN']), MotoristaController.show);
 
 // PUT http://localhost:3000/motoristas/:id -> Atualizar motorista
 router.put('/:id', MotoristaController.update);
