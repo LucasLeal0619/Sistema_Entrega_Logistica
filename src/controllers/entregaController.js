@@ -5,7 +5,7 @@ module.exports = {
   // CRIAR ENTREGA (APENAS ADMIN)
   async store(req, res) {
     try {
-      if (req.usuario.role !== 'ADMIN') {
+      if (!req.usuario || req.usuario.role !== 'ADMIN') {
         return res.status(403).json({ erro: 'Apenas administradores podem criar entregas' });
       }
 

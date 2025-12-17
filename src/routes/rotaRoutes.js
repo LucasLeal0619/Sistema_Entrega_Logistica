@@ -2,40 +2,28 @@ const express = require('express');
 const router = express.Router();
 const RotaController = require('../controllers/rotaController');
 
-const auth = require('../middlewares/autenticacao');
+const autenticacao = require('../middlewares/autenticacao');
 const autorizar = require('../middlewares/autorizar');
 
-// Login obrigatório para tudo
-router.use(auth);
+// Criar rota (ADMIN)
+router.post(  '/', autenticacao,autorizar(['ADMIN']),RotaController.store);
 
-// --- Ações Exclusivas de ADMIN ---
+// Listar rotas
+router.get('/', autenticacao, RotaController.index);
 
-// Criar nova rota
-router.post('/', autorizar(['ADMIN']), RotaController.store); // POST http://localhost:3000/rotas -> Criar rota
+// Buscar rota por ID
+router.get('/:id', autenticacao, RotaController.show);
 
-// Adicionar entrega na rota
-router.post('/:idRota/adicionar-entrega', autorizar(['ADMIN']), RotaController.adicionarEntrega);
+// Adicionar entrega à rota
+router.post('/:idRota/entregas',autenticacao,autorizar(['ADMIN']),RotaController.adicionarEntrega);
 
+// Dashboard da rota (A+B+C+D)
+router.get('/:id/dashboard',autenticacao,autorizar(['ADMIN']),RotaController.dashboard);
 
-// --- Ações Compartilhadas (ADMIN e MOTORISTA) ---
+// Atualizar rota
+router.put('/:id',autenticacao,autorizar(['ADMIN']),RotaController.update);
 
-// Listar rotas (O motorista precisa ver as rotas dele)
-router.get('/', autorizar(['ADMIN', 'MOTORISTA']), RotaController.index);
+// Remover rota
+router.delete('/:id',autenticacao,autorizar(['ADMIN']),RotaController.delete);
 
-// (Futuro) Atualizar status da rota para "Iniciada" ou "Finalizada"
-// router.put('/:id/status', autorizar(['ADMIN', 'MOTORISTA']), RotaController.updateStatus);
-
-/*
-// GET http://localhost:3000/rotas -> Listar rotas
-router.get('/', RotaController.index);
-
-// GET http://localhost:3000/rotas/:id -> Buscar rota por ID
-router.get('/:id', RotaController.show);
-
-// PUT http://localhost:3000/rotas/:id -> Atualizar rota
-router.put('/:id', RotaController.update);
-
-// DELETE http://localhost:3000/rotas/:id -> Remover rota
-router.delete('/:id', RotaController.delete);
-*/
 module.exports = router;

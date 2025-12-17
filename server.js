@@ -24,12 +24,14 @@ const motoristaRoutes = require('./src/routes/motoristaRoutes');
 const veiculoRoutes = require('./src/routes/veiculoRoutes');
 const entregaRoutes = require('./src/routes/entregaRoutes');
 const rotaRoutes = require('./src/routes/rotaRoutes');
+const clienteRoutes = require('./src/routes/clienteRoutes');
 const authRoutes = require('./src/routes/autenticacao.routes')
 // 2. Usar a rota
 app.use('/motoristas', motoristaRoutes);
 app.use('/veiculos', veiculoRoutes); 
 app.use('/entregas', entregaRoutes);
 app.use('/rotas', rotaRoutes);
+app.use('/clientes', clienteRoutes);
 app.use('/auth', authRoutes);   // login
 // -- FIM DAS IMPORTAÇÕES DAS ROTAS --
 

@@ -1,4 +1,4 @@
-const { Rota, Veiculo, Entrega } = require('../../models'); //Adicionei Veiculo e Entrega
+const { Rota, Motorista, Veiculo, Entrega } = require('../../models');
 
 module.exports = {
   // 1. Criar rota (Mantive os seus campos)
@@ -52,6 +52,14 @@ module.exports = {
 
       if (!rota) return res.status(404).json({ error: 'Rota não encontrada' });
       if (!rota.veiculo) return res.status(400).json({ error: 'Rota sem veículo atribuído' });
+      
+      //Verifica STATUS da rota
+      if (rota.status !== 'planejada' && rota.status !== 'em_andamento') {
+        return res.status(400).json({
+           error: 'Não é possível adicionar entrega em rota concluída'
+         });
+      }  
+      
 
       // Busca a Entrega Nova
       const novaEntrega = await Entrega.findByPk(idEntrega);
@@ -79,6 +87,12 @@ module.exports = {
       novaEntrega.rota_id = rota.id;
       novaEntrega.status = 'em_transito';
       await novaEntrega.save();
+      
+    //atualiza status da rota automaticamente 
+    if (rota.status === 'planejada') {
+      rota.status = 'em_andamento';
+      await rota.save();
+    }
 
       return res.status(200).json({ message: 'Entrega adicionada!', entrega: novaEntrega });
 
@@ -192,5 +206,53 @@ module.exports = {
         error: 'Erro ao remover rota'
       });
     }
+  },
+
+// ROTA COMPOSIÇÃO (A + B + C + D)
+async dashboard(req, res) {
+  try {
+    const { id } = req.params;
+
+    const rota = await Rota.findByPk(id, {
+      include: [
+        { model: Motorista, as: 'motorista' },
+        { model: Veiculo, as: 'veiculo' },
+        { model: Entrega, as: 'entregas' }
+      ]
+    });
+
+    if (!rota) {
+      return res.status(404).json({ error: 'Rota não encontrada' });
+    }
+
+    const capacidadeUsada = rota.entregas.reduce(
+      (total, entrega) => total + Number(entrega.capacidade_necessaria),
+      0
+    );
+
+    return res.json({
+      rota: {
+        id: rota.id,
+        nome: rota.nome,
+        descricao: rota.descricao,
+        status: rota.status,
+        data_rota: rota.data_rota
+      },
+      motorista: rota.motorista,
+      veiculo: rota.veiculo,
+      capacidade: {
+        utilizada: capacidadeUsada,
+        maxima: rota.veiculo.capacidade_maxima
+      },
+      entregas: rota.entregas
+    });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Erro ao gerar dashboard da rota' });
   }
+},
+
 };
+
+
