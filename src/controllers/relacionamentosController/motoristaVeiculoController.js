@@ -1,4 +1,4 @@
-const { Motorista, Veiculo } = require('../../models');
+const { Motorista, Veiculo } = require('../../../models');
 
 module.exports = {
 

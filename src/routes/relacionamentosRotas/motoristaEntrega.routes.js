@@ -1,15 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/motoristaEntregaController');
 
-// Lista entregas do motorista
-router.get('/motoristas/:id/entregas', controller.listarEntregas);
+const motoristaEntregaController = require('../../controllers/relacionamentosController/motoristaEntregaController');
 
-// Histórico de entregas concluídas
-router.get('/motoristas/:id/historico', controller.historico);
+const autenticacao = require('../../middlewares/autenticacao');
+const autorizar = require('../../middlewares/autorizar');
+
+// Listar entregas de um motorista
+// GET /api/motoristas/:id/entregas
+router.get('/motoristas/:id/entregas',autenticacao, autorizar(['ADMIN']), motoristaEntregaController.listarEntregas);
 
 // Atribuir motorista a uma entrega
-router.post('/entregas/:id/atribuir-motorista', controller.atribuirMotorista);
+// POST /api/entregas/:id/atribuir-motorista
+router.post('/entregas/:id/atribuir-motorista',autenticacao,autorizar(['ADMIN']),motoristaEntregaController.atribuirMotorista);
+
+// Histórico de entregas do motorista
+// GET /api/motoristas/:id/historico
+router.get('/motoristas/:id/historico',autenticacao,autorizar(['ADMIN']),motoristaEntregaController.historico);
 
 module.exports = router;
-

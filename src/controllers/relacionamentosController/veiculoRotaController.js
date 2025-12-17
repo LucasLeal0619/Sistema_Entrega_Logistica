@@ -1,4 +1,4 @@
-const { Veiculo, Rota } = require('../../models');
+const { Veiculo, Rota } = require('../../../models');
 
 module.exports = {
   // Listar rotas de um veículo

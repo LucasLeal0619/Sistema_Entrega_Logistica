@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const autenticacao = require('../../middlewares/autenticacao');
+const autorizar = require('../../middlewares/autorizar');
 
-const MotoristaRotaController = require('../../controllers/relacionamentosController/motoristaRotaController');
+const MotoristaRotaController = require( '../../controllers/relacionamentosController/motoristaRotaController');
 
-// Lista rotas do motorista
-router.get('/motoristas/:id/rotas', MotoristaRotaController.listarRotas);
+router.get('/motoristas/:id/rotas', autenticacao, autorizar(['ADMIN']),MotoristaRotaController.listarRotas);
 
-// Cria rota vinculada ao motorista
-router.post('/motoristas/:id/rotas', MotoristaRotaController.criarRota);
+router.post('/motoristas/:id/rotas', autenticacao, autorizar(['ADMIN']), MotoristaRotaController.criarRota);
 
 module.exports = router;

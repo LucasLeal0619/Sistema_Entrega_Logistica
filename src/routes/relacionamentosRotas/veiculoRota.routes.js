@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const veiculoRotaController = require('../controllers/veiculoRotaController');
+const veiculoRotaController = require('../../controllers/relacionamentosController/veiculoRotaController');
 
 // GET /api/veiculos/:id/rotas
 router.get('/veiculos/:id/rotas', veiculoRotaController.listarRotas);

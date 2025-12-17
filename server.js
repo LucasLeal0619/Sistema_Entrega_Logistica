@@ -1,8 +1,6 @@
-require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { sequelize } = require('./models');
-
 
 const app = express();
 const PORT = 3000;
@@ -18,27 +16,35 @@ app.get('/', (req, res) => {
   });
 });
 
-// -- IMPORTAÇÕES DAS ROTAS FUTURAS --
-// 1. Importar o arquivo de rotas
+// Rotas principais
 const motoristaRoutes = require('./src/routes/motoristaRoutes');
 const veiculoRoutes = require('./src/routes/veiculoRoutes');
 const entregaRoutes = require('./src/routes/entregaRoutes');
 const rotaRoutes = require('./src/routes/rotaRoutes');
-const authRoutes = require('./src/routes/autenticacao.routes')
-// 2. Usar a rota
+const authRoutes = require('./src/routes/autenticacao.routes');
+const clienteRoutes = require('./src/routes/clienteRoutes');
+
+// Rotas de relacionamento
+const motoristaEntregaRoutes = require('./src/routes/relacionamentosRotas/motoristaEntrega.routes');
+const motoristaRotaRoutes = require('./src/routes/relacionamentosRotas/motoristaRota.routes');
+const veiculoRotaRoutes = require('./src/routes/relacionamentosRotas/veiculoRota.routes');
+const motoristaVeiculoRoutes = require('./src/routes/relacionamentosRotas/motoristaVeiculo.routes');
+const rotaEntregaRoutes = require('./src/routes/relacionamentosRotas/rotaEntrega.routes');
+
+// Uso das rotas
 app.use('/motoristas', motoristaRoutes);
-app.use('/veiculos', veiculoRoutes); 
+app.use('/veiculos', veiculoRoutes);
 app.use('/entregas', entregaRoutes);
 app.use('/rotas', rotaRoutes);
+app.use('/auth', authRoutes);
 app.use('/clientes', clienteRoutes);
-app.use('/auth', authRoutes);   // login
-app.use('/cliente,', clienteRoutes);
+
+// Relacionamentos
 app.use('/api', motoristaEntregaRoutes);
 app.use('/api', motoristaRotaRoutes);
 app.use('/api', veiculoRotaRoutes);
 app.use('/api', motoristaVeiculoRoutes);
 app.use('/api', rotaEntregaRoutes);
-// -- FIM DAS IMPORTAÇÕES DAS ROTAS --
 
 // Inicia servidor
 app.listen(PORT, async () => {
