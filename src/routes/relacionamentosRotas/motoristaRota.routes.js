@@ -5,7 +5,7 @@ const autorizar = require('../../middlewares/autorizar');
 
 const MotoristaRotaController = require( '../../controllers/relacionamentosController/motoristaRotaController');
 
-router.get('/motoristas/:id/rotas', autenticacao, autorizar(['ADMIN']),MotoristaRotaController.listarRotas);
+router.get('/motoristas/:id/rotas', autenticacao,MotoristaRotaController.listarRotas);
 
 router.post('/motoristas/:id/rotas', autenticacao, autorizar(['ADMIN']), MotoristaRotaController.criarRota);
 

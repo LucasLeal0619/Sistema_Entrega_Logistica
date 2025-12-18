@@ -1,7 +1,7 @@
 const { Rota, Motorista, Veiculo, Entrega } = require('../../models');
 
 module.exports = {
-  // 1. Criar rota (Mantive os seus campos)
+  // 1. Criar rota 
   async store(req, res) {
     try {
       const {
@@ -35,8 +35,7 @@ module.exports = {
     }
   },
 
-  // 2. FUNÇÃO NOVA: Adicionar Entrega com Validação de Capacidade
-  // (Esta era a peça que faltava e causava o erro)
+  // 2. Adicionar Entrega com Validação de Capacidade
   async adicionarEntrega(req, res) {
     try {
       const { idRota } = req.params; 
