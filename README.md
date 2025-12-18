@@ -119,10 +119,8 @@ A API segue o padrão **REST**, utilizando requisições HTTP e respostas em for
 | GET  | /entregas          | Lista todas as entregas           | Sim |
 | POST | /entregas          | Cadastra uma entrega              | Sim |
 | PUT  | /entregas/:id      | Atualiza o status da entrega      | Sim |
+| GET  | /api/motoristas/{id}/entregas/ | lista entregas realizadas pelo motorista | Sim |
 
-
-📌 Detalhes:
-Os schemas de requisição e resposta seguem boas práticas REST e podem ser facilmente documentados com Swagger futuramente.
 
 ---
 
