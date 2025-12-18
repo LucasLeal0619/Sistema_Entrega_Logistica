@@ -117,3 +117,106 @@ Sistema_Entrega_Logistica/
 | GET    | /entregas   | Lista entregas     |
 | POST   | /entregas   | Cadastra entrega   |
 
+---
+
+⚙️ Configuração do Ambiente
+
+Siga os passos abaixo para configurar o ambiente local de desenvolvimento.
+
+📥 Clonar o repositório
+git clone https://github.com/seu-usuario/Sistema_Entrega_Logistica.git
+cd Sistema_Entrega_Logistica
+
+---
+
+📦 Instalar as dependências
+
+Certifique-se de ter o Node.js (versão 18+) instalado.
+
+npm install
+
+---
+
+🔑 Configurar variáveis de ambiente
+
+Crie o arquivo .env a partir do exemplo fornecido:
+
+cp .env.example .env
+
+---
+
+No Windows, caso o comando cp não funcione:
+copy .env.example .env
+Edite o arquivo .env e configure as credenciais do banco de dados e porta da aplicação.
+
+---
+
+🗄️ Banco de Dados e Migrações
+
+Certifique-se de que o PostgreSQL esteja em execução.
+Execute as migrações para criar as tabelas no banco de dados:
+
+npx sequelize-cli db:migrate
+
+---
+
+▶️ Iniciar o servidor
+
+npm start
+
+Ou, em ambiente de desenvolvimento:
+
+npm run dev
+
+A aplicação estará disponível em:
+
+http://localhost:3000
+
+---
+
+🚀 Implantação (Opcional)
+
+Plataformas recomendadas:
+
+Render
+
+Railway
+
+AWS
+
+---
+
+📄 Configuração de Deploy
+
+Defina as variáveis de ambiente diretamente na plataforma de hospedagem:
+
+PORT
+
+DB_HOST
+
+DB_USER
+
+DB_PASSWORD
+
+DB_NAME
+
+DB_PORT
+
+NODE_ENV=production
+
+---
+
+▶️ Executar migrações em produção
+npx sequelize-cli db:migrate
+
+---
+
+🔄 CI/CD (Opcional)
+
+O projeto pode ser integrado a pipelines de CI/CD utilizando GitHub Actions, permitindo:
+
+Execução automática de testes
+
+Build da aplicação
+
+Deploy contínuo
