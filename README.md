@@ -15,7 +15,7 @@ Node.js • Express • PostgreSQL • Sequelize • Licença MIT
 ## Orientador
 
 - **Tiago Segato**  
-  - LinkedIn: https://www.https://www.linkedin.com/in/tiagosegato/
+  - https://www.https://www.linkedin.com/in/tiagosegato/
   - GitHub: https://https://github.com/tiagosegato
 
 ---
