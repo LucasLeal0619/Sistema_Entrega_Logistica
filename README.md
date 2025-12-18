@@ -1,10 +1,35 @@
-# Sistema de Gestão de Entregas e Logística
+# API – Sistema de Gestão de Entregas e Logística
 
-[![Node.js](https://img.shields.io/badge/Node.js-22%2B-green.svg?logo=node.js)](https://nodejs.org/)
-[![Express](https://img.shields.io/badge/Express-4.x-black.svg?logo=express)](https://expressjs.com/)
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-yellow.svg?logo=javascript)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14%2B-blue.svg?logo=postgresql)](https://www.postgresql.org/)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+Node.js • Express • PostgreSQL • Sequelize • Licença MIT
+
+---
+
+## Instituições de Fomento e Parceria
+
+- Instituto Federal de Educação, Ciência e Tecnologia
+- Instituto Hardware BR - HBR
+- Curso: **Desenvolvimento de Software – Formação Back-End**
+
+---
+
+## Orientador
+
+- **Tiago Segato**  
+  - LinkedIn: https://www.https://www.linkedin.com/in/tiagosegato/
+  - GitHub: https://https://github.com/tiagosegato
+
+---
+
+## Sumário
+
+- Visão Geral  
+- Tecnologias Utilizadas  
+- Estrutura do Projeto  
+- Diagrama de Banco de Dados  
+- Funcionalidades  
+- Documentação da API  
+- Configuração do Ambiente  
+- Implantação  
 
 ---
 
@@ -12,75 +37,38 @@
 
 O **Sistema de Gestão de Entregas e Logística** é uma API backend desenvolvida para auxiliar empresas de logística no controle, organização e acompanhamento de entregas e motoristas.
 
-A solução foi projetada com foco em **organização, escalabilidade e boas práticas de desenvolvimento**, oferecendo uma base sólida para evolução futura do sistema.
+O sistema resolve problemas comuns do setor logístico, como:
+- Falta de organização no controle de entregas
+- Dificuldade no acompanhamento do status das entregas
+- Erros operacionais por processos manuais
+- Falta de centralização das informações
+
+O público-alvo inclui **transportadoras, empresas de logística, distribuidoras e negócios que realizam entregas**, oferecendo uma base sólida, escalável e preparada para evoluções futuras.
 
 ---
 
-## 🎯 Objetivo do Sistema
+## Tecnologias Utilizadas
 
-- Centralizar o gerenciamento de entregas
-- Organizar informações de motoristas
-- Reduzir erros operacionais
-- Facilitar o acompanhamento do fluxo logístico
-- Servir como base para expansão futura
+| Tecnologia     | Versão Recomendada | Descrição |
+|---------------|-------------------|----------|
+| Node.js       | >= 18             | Ambiente de execução JavaScript |
+| Express.js    | ^4.x              | Framework web para APIs REST |
+| PostgreSQL    | >= 14             | Banco de dados relacional |
+| Sequelize     | mais recente      | ORM para Node.js |
+| dotenv        | mais recente      | Gerenciamento de variáveis de ambiente |
+| nodemon       | mais recente      | Reinicialização automática em desenvolvimento |
+| Git / GitHub  | -                 | Versionamento e controle de código |
 
----
-
-## 👥 Equipe de Desenvolvimento
-
-Projeto desenvolvido por:
-
-- **Gabriel Luiz**
-- **Lucas Leal**
-- **Rafael Mendes**
-- **Vinícius Abreu**
-- **Pietra Cardoso**
-
-Disciplina:  
-**Desenvolvimento de Software com Formação BackEnd – JavaScript com Node.js + Express**
+> 📌 **Nota:** Consulte o arquivo `package.json` para a lista completa e versões exatas das dependências.
 
 ---
 
-## 🏢 Público-Alvo
-
-- Empresas de logística
-- Transportadoras
-- Empresas de distribuição
-- Negócios que realizam entregas
-
----
-
-## ⚙️ Tecnologias Utilizadas
-
-- Node.js
-- Express.js
-- JavaScript (ES6+)
-- API REST
-- PostgreSQL
-- Sequelize ORM
-- dotenv
-- nodemon
-- Git e GitHub
-
----
-
-## 🧱 Arquitetura do Sistema
-
-O sistema segue uma **arquitetura em camadas**, promovendo separação de responsabilidades e facilitando manutenção e escalabilidade.
-
-**Camadas principais:**
-- Routes – Definição das rotas
-- Controllers – Controle das requisições
-- Services – Regras de negócio
-- Models – Estrutura dos dados
-
----
-
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```bash
 Sistema_Entrega_Logistica/
 ├── config/
+│   └── database.js
 ├── migrations/
 ├── models/
 ├── src/
@@ -90,9 +78,9 @@ Sistema_Entrega_Logistica/
 │   └── utils/
 ├── server.js
 ├── package.json
-├── .env
+├── .env.example
 └── README.md
-```
+
 
 ---
 
