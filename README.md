@@ -34,6 +34,7 @@ Projeto desenvolvido por:
 - **Lucas Leal**
 - **Rafael Mendes**
 - **Vinícius Abreu**
+- **Pietra Cardoso**
 
 Disciplina:  
 **Desenvolvimento de Software com Formação BackEnd – JavaScript com Node.js + Express**
