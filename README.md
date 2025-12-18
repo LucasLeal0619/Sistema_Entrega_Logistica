@@ -120,6 +120,15 @@ A API segue o padrão **REST**, utilizando requisições HTTP e respostas em for
 | POST | /entregas          | Cadastra uma entrega              | Sim |
 | PUT  | /entregas/:id      | Atualiza o status da entrega      | Sim |
 | GET  | /api/motoristas/{id}/entregas/ | lista entregas realizadas pelo motorista | Sim |
+| POST  | /api/entregas/{id}/atribuir-motorista/ | atribui um motorista à entrega | Sim |
+| GET  | /api/motoristas/{id}/historico/ | histórico completo de entregas do motorista | Sim |
+| GET  | /api/motoristas/{id}/rotas/ | lista rotas do motorista | Sim |
+| POST  | /api/motoristas/{id}/rotas/ | cria uma nova rota para o motorista | Sim |
+| POST  | /api/rotas/{id}/entregas/ | adiciona entrega à rota (valida capacidade) | Sim |
+| GET  | /api/rotas/{id}/entregas/ | lista entregas de uma rota | Sim |
+| GET  | /api/rotas/{id}/dashboard/ | Lista composição das quatro entidades | Sim |
+
+
 
 
 ---
