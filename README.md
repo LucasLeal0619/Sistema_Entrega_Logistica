@@ -91,3 +91,25 @@ Sistema_Entrega_Logistica/
 ├── package.json
 ├── .env
 └── README.md
+
+📡 Funcionalidades
+
+Cadastro de clientes
+
+- Cadastro de motoristas
+- Cadastro de entregas
+- Consulta de dados
+- Organização do fluxo logístico
+- API seguindo padrão REST
+
+🔗 Documentação da API (Exemplos)
+
+| Método | Endpoint    | Descrição          |
+| ------ | ----------- | ------------------ |
+| GET    | /clientes   | Lista clientes     |
+| POST   | /clientes   | Cadastra cliente   |
+| GET    | /motoristas | Lista motoristas   |
+| POST   | /motoristas | Cadastra motorista |
+| GET    | /entregas   | Lista entregas     |
+| POST   | /entregas   | Cadastra entrega   |
+
