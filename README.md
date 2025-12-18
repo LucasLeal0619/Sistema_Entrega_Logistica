@@ -96,20 +96,23 @@ Funcionalidades
 
 ---
 
-Documentação da API
+## 📘 Documentação da API
 
-A API segue o padrão REST, utilizando requisições HTTP e respostas em formato JSON.
+A API segue o padrão **REST**, utilizando requisições HTTP e respostas em formato **JSON**.
 
-Principais Endpoints
-Método	Endpoint	Descrição	Autenticação
-GET	/motoristas	Lista todos os motoristas	Sim
-POST	/motoristas	Cadastra um novo motorista	Sim
-GET	/motoristas/:id	Detalha um motorista	Sim
-PUT	/motoristas/:id	Atualiza um motorista	Sim
-DELETE	/motoristas/:id	Remove um motorista	Sim
-GET	/entregas	Lista todas as entregas	Sim
-POST	/entregas	Cadastra uma entrega	Sim
-PUT	/entregas/:id	Atualiza status da entrega	Sim
+### 🔗 Principais Endpoints
+
+| Método | Endpoint           | Descrição                         | Autenticação |
+|------|--------------------|-----------------------------------|--------------|
+| GET  | /motoristas        | Lista todos os motoristas         | Sim |
+| POST | /motoristas        | Cadastra um novo motorista        | Sim |
+| GET  | /motoristas/:id    | Detalha um motorista              | Sim |
+| PUT  | /motoristas/:id    | Atualiza um motorista             | Sim |
+| DELETE | /motoristas/:id  | Remove um motorista               | Sim |
+| GET  | /entregas          | Lista todas as entregas           | Sim |
+| POST | /entregas          | Cadastra uma entrega              | Sim |
+| PUT  | /entregas/:id      | Atualiza o status da entrega      | Sim |
+
 
 📌 Detalhes:
 Os schemas de requisição e resposta seguem boas práticas REST e podem ser facilmente documentados com Swagger futuramente.
