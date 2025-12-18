@@ -92,6 +92,8 @@ Sistema_Entrega_Logistica/
 ├── .env
 └── README.md
 
+---
+
 📡 Funcionalidades
 
 Cadastro de clientes
@@ -101,6 +103,8 @@ Cadastro de clientes
 - Consulta de dados
 - Organização do fluxo logístico
 - API seguindo padrão REST
+
+---
 
 🔗 Documentação da API (Exemplos)
 
