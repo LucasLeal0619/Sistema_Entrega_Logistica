@@ -91,13 +91,13 @@ Sistema_Entrega_Logistica/
 ├── package.json
 ├── .env
 └── README.md
+```
 
 ---
 
 📡 Funcionalidades
 
-Cadastro de clientes
-
+- Cadastro de clientes
 - Cadastro de motoristas
 - Cadastro de entregas
 - Consulta de dados
