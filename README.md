@@ -1,180 +1,198 @@
-# Projeto Integrador - Sistema de Gestão de Logística e Entregas
+# API – Sistema de Gestão de Entregas e Logística
 
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES2020%2B-f7df1e?logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
-[![Node.js](https://img.shields.io/badge/Node.js-22.17.0-green?logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Express.js](https://img.shields.io/badge/Express.js-5.1.0-blue?logo=express)](https://expressjs.com/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18%2B-316192.svg?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js](https://img.shields.io/badge/Node.js-18%2B-green?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-4.x-black?logo=express&logoColor=white)](https://expressjs.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14%2B-blue?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Sequelize](https://img.shields.io/badge/Sequelize-ORM-blue?logo=sequelize&logoColor=white)](https://sequelize.org/)
+[![License](https://img.shields.io/badge/License-MIT-blue)](https://opensource.org/licenses/MIT)
+
+---
 
 ## Instituições de Fomento e Parceria
-[![Website IFB](https://img.shields.io/badge/Website-IFB-%23508C3C.svg?labelColor=%23C8102E)](https://www.ifb.edu.br/) 
-[![Website ihwbr](https://img.shields.io/badge/Website-ihwbr-%23DAA520.svg?labelColor=%232E2E2E)](https://hardware.org.br/)
 
-## Orientador (link para o perfil do orientador)
+[![IFB](https://img.shields.io/badge/Instituto-Federal-008000?labelColor=CC0000)](https://www.ifb.edu.br/)
+[![HBR](https://img.shields.io/badge/Instituto-Hardware_BR-black)](https://hardware.org.br/)
 
-[![LinkedIn Tiago Segato](https://img.shields.io/badge/LinkedIn-Tiago_Segato-%230077B5.svg?labelColor=%23FFFFFF&logo=linkedin)](https://www.linkedin.com/in/tiagosegato/)
-[![GitHub Tiago Segato](https://img.shields.io/badge/GitHub-Tiago_Segato-black.svg?logo=github&logoColor=white)](https://github.com/tiagosegato)
+Curso: **Desenvolvimento de Software – Formação Back-End**
+
+---
+
+## Orientador
+
+**Tiago Segato**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Tiago_Segato-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/tiagosegato/)
+[![GitHub](https://img.shields.io/badge/GitHub-tiagosegato-181717?logo=github&logoColor=white)](https://github.com/tiagosegato)
+
+---
 
 ## Sumário
 
-## // nada abaixo daqui foi modificado.
+- Visão Geral  
+- Tecnologias Utilizadas  
+- Estrutura do Projeto  
+- Funcionalidades  
+- Documentação da API  
+- Configuração do Ambiente  
+- Implantação  
+- Licença  
 
-- [Visão Geral](#visão-geral)
-- [Pacotes Utilizados](#pacotes-utilizados)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Diagrama de Banco de Dados](#diagrama-de-banco-de-dados)
-- [Documentação da API](#documentação-da-api)
-- [Configuração do Ambiente](#configuração-do-ambiente)
-- [Deploy](#deploy)
+---
 
 ## Visão Geral
 
-Forneça uma descrição concisa do propósito da API, seus objetivos principais e o problema que resolve. Inclua informações sobre o domínio de aplicação, público-alvo e funcionalidades de alto nível.
+O **Sistema de Gestão de Entregas e Logística** é uma API backend desenvolvida para auxiliar empresas de logística no controle, organização e acompanhamento de entregas e motoristas.
 
-## Pacotes Utilizados
+O sistema resolve problemas comuns do setor logístico, como:
 
-Liste todos os pacotes Python necessários, com versões recomendadas. Utilize um formato de tabela para maior clareza.
+- Falta de organização no controle de entregas  
+- Dificuldade no acompanhamento do status das entregas  
+- Erros operacionais causados por processos manuais  
+- Falta de centralização das informações  
 
-| Pacote                  | Versão       | Descrição                                      |
-|-------------------------|--------------|------------------------------------------------|
-| Django                  | >=5.0        | Framework web principal                        |
-| djangorestframework     | latest       | Toolkit para construção de APIs REST           |
-| psycopg2-binary         | latest       | Adaptador PostgreSQL                           |
-| django-environ          | latest       | Gerenciamento de variáveis de ambiente         |
-| drf-yasg                | latest       | Geração automática de documentação Swagger     |
-| ...                     | ...          | ...                                            |
+O público-alvo inclui **transportadoras, empresas de logística, distribuidoras e negócios que realizam entregas**, oferecendo uma base sólida, escalável e preparada para evoluções futuras.
 
-> **Nota:** Consulte o arquivo `requirements.txt` para a lista completa e versões exatas.
+---
+
+## Tecnologias Utilizadas
+
+| Tecnologia | Versão Recomendada | Descrição |
+|----------|-------------------|----------|
+| Node.js | >= 18 | Ambiente de execução JavaScript |
+| Express.js | ^4.x | Framework web para APIs REST |
+| PostgreSQL | >= 14 | Banco de dados relacional |
+| Sequelize | Mais recente | ORM para Node.js |
+| dotenv | Mais recente | Gerenciamento de variáveis de ambiente |
+| nodemon | Mais recente | Reinicialização automática em desenvolvimento |
+| Git / GitHub | - | Versionamento e controle de código |
+
+📌 **Nota:** Consulte o arquivo `package.json` para a lista completa e versões exatas das dependências.
+
+---
 
 ## Estrutura do Projeto
 
-Apresente a organização dos diretórios e arquivos principais. Utilize uma árvore de diretórios para visualização clara.
-
-```
-sistema_entrega_logistica/
-├── src/
-│   ├── config/
-│   │   ├── config.json
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── clientController.js
-│   │   ├── deliveryController.js
-│   │   ├── driverController.js
-│   │   └── routeController.js
-│   ├── middlewares/
-│   │   ├── authMiddleware.js
-│   │   ├── errorHandler.js
-│   │   └── validator.js
-│   ├── models/
-│   │   ├── entrega.js
-│   │   ├── index.js
-│   │   ├── motorista.js
-│   │   ├── rota.js
-│   │   └── veiculo.js
-│   ├── routes/
-│   │   ├── index.js
-│   │   ├── authRoutes.js
-│   │   ├── clientRoutes.js
-│   │   ├── deliveryRoutes.js
-│   │   ├── driverRoutes.js
-│   │   └── routesRoutes.js
-│   ├── services/
-│   │   ├── authService.js
-│   │   ├── routeOptimizationService.js
-│   │   └── trackingService.js
-│   ├── utils/
-│   │   ├── helpers.js
-│   │   └── logger.js
-│   └── app.js 
-├── node_modules/
+```bash
+Sistema_Entrega_Logistica/
+├── config/
+│   └── database.js
 ├── migrations/
+├── models/
+├── src/
+│   ├── controllers/
 │   ├── routes/
-├── index.js
+│   ├── services/
+│   └── utils/
+├── server.js
 ├── package.json
-├── package-lock.json
-├── LICENSE
+├── .env.example
 └── README.md
 ```
 
-Descreva brevemente o propósito de cada diretório e módulo relevante.
+---
 
-## Diagrama de Banco de Dados
+Funcionalidades
 
-![Diagrama de Banco de Dados](./docs/database_diagram.png)
+- Cadastro de motoristas
+- Listagem, atualização e exclusão de motoristas
+- Cadastro de entregas
+- Acompanhamento do status das entregas
+- Associação de entregas a motoristas
+- Organização e centralização das informações logísticas
+- Estrutura preparada para autenticação e controle de permissões
 
-> **Descrição:** Inclua um diagrama ER (Entidade-Relacionamento) gerado por ferramentas como `django-extensions` ou `pygraphviz`. Descreva as principais entidades, relacionamentos e campos críticos.
+---
 
-## Documentação da API
+## 📘 Documentação da API
 
-A documentação interativa está disponível em `/api/docs/` (Swagger UI) ou `/api/redoc/` (ReDoc) no ambiente de desenvolvimento.
+A API segue o padrão **REST**, utilizando requisições HTTP e respostas em formato **JSON**.
 
-### Endpoints Principais
+### 🔗 Principais Endpoints
 
-| Método | Endpoint              | Descrição                          | Autenticação |
-|--------|-----------------------|------------------------------------|--------------|
-| GET    | `/api/items/`         | Lista todos os itens               | Opcional     |
-| POST   | `/api/items/`         | Cria um novo item                  | Requerida    |
-| GET    | `/api/items/{id}/`    | Recupera um item específico        | Opcional     |
-| ...    | ...                   | ...                                | ...          |
+| Método | Endpoint           | Descrição                         | Autenticação |
+|------|--------------------|-----------------------------------|--------------|
+| GET  | /motoristas        | Lista todos os motoristas         | Sim |
+| POST | /motoristas        | Cadastra um novo motorista        | Sim |
+| GET  | /motoristas/:id    | Detalha um motorista              | Sim |
+| PUT  | /motoristas/:id    | Atualiza um motorista             | Sim |
+| DELETE | /motoristas/:id  | Remove um motorista               | Sim |
+| GET  | /entregas          | Lista todas as entregas           | Sim |
+| POST | /entregas          | Cadastra uma entrega              | Sim |
+| PUT  | /entregas/:id      | Atualiza o status da entrega      | Sim |
 
-> **Detalhes:** Consulte a interface Swagger para schemas de request/response, parâmetros e exemplos.
 
-## Configuração do Ambiente
+📌 Detalhes:
+Os schemas de requisição e resposta seguem boas práticas REST e podem ser facilmente documentados com Swagger futuramente.
+
+---
+
+Configuração do Ambiente
 
 Siga os passos abaixo para configurar o ambiente local.
 
-1. **Clone o repositório:**
-   ```bash
-   git clone https://github.com/usuario/projeto_api.git
-   cd projeto_api
-   ```
+Clonar o repositório
+```bash
+git clone https://github.com/seu-usuario/Sistema_Entrega_Logistica.git
+cd Sistema_Entrega_Logistica
+```
 
-2. **Crie um ambiente virtual:**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # Linux/Mac
-   venv\Scripts\activate     # Windows
-   ```
+Instalar as dependências
+```bash
+npm install
 
-3. **Instale as dependências:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+```
 
-4. **Configure as variáveis de ambiente:**
-   ```bash
-   cp .env.example .env
-   # Edite .env com suas credenciais
-   ```
+Configurar variáveis de ambiente
 
-5. **Aplique as migrações e inicie o servidor:**
-   ```bash
-   python manage.py migrate
-   python manage.py runserver
-   ```
+```bash
+cp .env.example .env
 
-## Deploy(opcional)
+```
 
-### Plataforma Recomendada: [Render / Railway / AWS]
+Edite o arquivo .env com suas credenciais:
+```bash
+PORT=3000
+DB_HOST=localhost
+DB_USER=postgres
+DB_PASSWORD=senha
+DB_NAME=logistica
+DB_PORT=5432
+```
 
-1. **Prepare o `Procfile`:**
-   ```
-   web: gunicorn projeto.wsgi:application --log-file -
-   ```
+Executar migrações e iniciar o servidor
+```bash
+npx sequelize-cli db:migrate
+npm start
+```
 
-2. **Configure variáveis de ambiente** na plataforma de deploy.
+Ou em modo desenvolvimento:
+```bash
+npm run dev
+```
 
-3. **Execute migrações em produção:**
-   ```bash
-   python manage.py migrate
-   ```
+---
 
-4. **Colete arquivos estáticos (se aplicável):**
-   ```bash
-   python manage.py collectstatic
-   ```
+Passos gerais
 
-> **CI/CD:** Integração com GitHub Actions disponível em `.github/workflows/deploy.yml`.
+1. Configurar variáveis de ambiente na plataforma
 
+2. Executar as migrações em produção:
+```bash
+npx sequelize-cli db:migrate
+```
 
+3.Iniciar a aplicação
 
+---
+
+Licença
+
+Este projeto está licenciado sob a Licença MIT.
+
+---
+
+Execução automática de testes
+
+Build da aplicação
+
+Deploy contínuo
