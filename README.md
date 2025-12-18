@@ -84,125 +84,102 @@ Sistema_Entrega_Logistica/
 
 ---
 
-📡 Funcionalidades
+Funcionalidades
 
-- Cadastro de clientes
 - Cadastro de motoristas
+- Listagem, atualização e exclusão de motoristas
 - Cadastro de entregas
-- Consulta de dados
-- Organização do fluxo logístico
-- API seguindo padrão REST
+- Acompanhamento do status das entregas
+- Associação de entregas a motoristas
+- Organização e centralização das informações logísticas
+- Estrutura preparada para autenticação e controle de permissões
 
 ---
 
-🔗 Documentação da API (Exemplos)
+Documentação da API
 
-| Método | Endpoint    | Descrição          |
-| ------ | ----------- | ------------------ |
-| GET    | /clientes   | Lista clientes     |
-| POST   | /clientes   | Cadastra cliente   |
-| GET    | /motoristas | Lista motoristas   |
-| POST   | /motoristas | Cadastra motorista |
-| GET    | /entregas   | Lista entregas     |
-| POST   | /entregas   | Cadastra entrega   |
+A API segue o padrão REST, utilizando requisições HTTP e respostas em formato JSON.
+
+Principais Endpoints
+Método	Endpoint	Descrição	Autenticação
+GET	/motoristas	Lista todos os motoristas	Sim
+POST	/motoristas	Cadastra um novo motorista	Sim
+GET	/motoristas/:id	Detalha um motorista	Sim
+PUT	/motoristas/:id	Atualiza um motorista	Sim
+DELETE	/motoristas/:id	Remove um motorista	Sim
+GET	/entregas	Lista todas as entregas	Sim
+POST	/entregas	Cadastra uma entrega	Sim
+PUT	/entregas/:id	Atualiza status da entrega	Sim
+
+📌 Detalhes:
+Os schemas de requisição e resposta seguem boas práticas REST e podem ser facilmente documentados com Swagger futuramente.
 
 ---
 
-⚙️ Configuração do Ambiente
+Configuração do Ambiente
 
-Siga os passos abaixo para configurar o ambiente local de desenvolvimento.
+Siga os passos abaixo para configurar o ambiente local.
 
-📥 Clonar o repositório
+Clonar o repositório
+```bash
 git clone https://github.com/seu-usuario/Sistema_Entrega_Logistica.git
 cd Sistema_Entrega_Logistica
+```
 
----
-
-📦 Instalar as dependências
-
-Certifique-se de ter o Node.js (versão 18+) instalado.
-
+Instalar as dependências
+```bash
 npm install
 
----
+```
 
-🔑 Configurar variáveis de ambiente
+Configurar variáveis de ambiente
 
-Crie o arquivo .env a partir do exemplo fornecido:
-
+```bash
 cp .env.example .env
 
----
+```
 
-No Windows, caso o comando cp não funcione:
-copy .env.example .env
-Edite o arquivo .env e configure as credenciais do banco de dados e porta da aplicação.
+Edite o arquivo .env com suas credenciais:
+```bash
+PORT=3000
+DB_HOST=localhost
+DB_USER=postgres
+DB_PASSWORD=senha
+DB_NAME=logistica
+DB_PORT=5432
+```
 
----
-
-🗄️ Banco de Dados e Migrações
-
-Certifique-se de que o PostgreSQL esteja em execução.
-Execute as migrações para criar as tabelas no banco de dados:
-
+Executar migrações e iniciar o servidor
+```bash
 npx sequelize-cli db:migrate
-
----
-
-▶️ Iniciar o servidor
-
 npm start
+```
 
-Ou, em ambiente de desenvolvimento:
-
+Ou em modo desenvolvimento:
+```bash
 npm run dev
-
-A aplicação estará disponível em:
-
-http://localhost:3000
+```
 
 ---
 
-🚀 Implantação (Opcional)
+Passos gerais
 
-Plataformas recomendadas:
+1. Configurar variáveis de ambiente na plataforma
 
-Render
-
-Railway
-
-AWS
-
----
-
-📄 Configuração de Deploy
-
-Defina as variáveis de ambiente diretamente na plataforma de hospedagem:
-
-PORT
-
-DB_HOST
-
-DB_USER
-
-DB_PASSWORD
-
-DB_NAME
-
-DB_PORT
-
-NODE_ENV=production
-
----
-
-▶️ Executar migrações em produção
+2. Executar as migrações em produção:
+```bash
 npx sequelize-cli db:migrate
+```
+
+3.Iniciar a aplicação
 
 ---
 
-🔄 CI/CD (Opcional)
+Licença
 
-O projeto pode ser integrado a pipelines de CI/CD utilizando GitHub Actions, permitindo:
+Este projeto está licenciado sob a Licença MIT.
+
+---
 
 Execução automática de testes
 
